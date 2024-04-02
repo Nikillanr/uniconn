@@ -3,7 +3,7 @@ import Register from "./pages/register/Register";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
+  // Route,
   Outlet,
   Navigate,
 } from "react-router-dom";
