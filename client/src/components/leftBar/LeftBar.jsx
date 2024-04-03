@@ -84,11 +84,11 @@ const LeftBar = () => {
           </div> */}
           <div className="item">
             <img src={Tutorials} alt="" />
-            <span>SLCM</span>
+            <a href="https://slcm.manipal.edu/" target="_blank" rel="noreferrer">SLCM</a>
           </div>
           <div className="item">
             <img src={Courses} alt="" />
-            <span>Lighthouse</span>
+            <a href="https://lighthouse.manipal.edu/d2l/login?sessionExpired=0&target=%2fd2l%2fhome%2f7036" target="_blank" rel="noreferrer">Lighthouse</a>
           </div>
         </div>
       </div>
