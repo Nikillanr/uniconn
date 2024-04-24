@@ -36,13 +36,17 @@ const Navbar = () => {
       </div>
       <div className="right">
         <PersonOutlinedIcon />
-        <EmailOutlinedIcon />
+
+        <a
+          href="https://outlook.office365.com/mail/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <EmailOutlinedIcon />
+        </a>
         <NotificationsOutlinedIcon />
         <div className="user">
-          <img
-            src={currentUser.profilePic}
-            alt=""
-          />
+          <img src={currentUser.profilePic} alt="" />
           <span>{currentUser.name}</span>
         </div>
       </div>

@@ -1,46 +1,42 @@
 import { makeRequest } from "../../axios";
 import Post from "../post/Post";
 import "./posts.scss";
-import {
-  useQuery
-} from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 
 const Posts = () => {
+  //v5 code
+  //   const { isLoading, error, data } = useQuery({
+  //     queryKey: ['posts'],
+  //     queryFn: () => {
+  //     makeRequest.get("/posts").then((res)=>{
+  //       return res.data
+  //     })
+  //   }
+  // }
 
+  //   )
 
-//v5 code
-//   const { isLoading, error, data } = useQuery({
-//     queryKey: ['posts'],
-//     queryFn: () => {
-//     makeRequest.get("/posts").then((res)=>{
-//       return res.data
-//     })
-//   }
-// }
+  //v4 code
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["posts"],
+    queryFn: async () => {
+      const res = await makeRequest.get("/posts");
+      return res.data;
+    },
+  });
+  console.log(data);
 
-//   ) 
+  if (isLoading) return <>Loading...</>;
 
-
-//v4 code
-const { isLoading, error, data } = useQuery({
-  queryKey: ['posts'],
-  queryFn: async() =>{
-    const res = await makeRequest.get("/posts")
-    return res.data
-  }
-})
-  console.log(data)
-
-  
-  return <div className="posts">
-    {error 
-    ? "Something went wrong!" :
-     (isLoading
-    ? "loading"
-    : data.map((post)=>
-      <Post post={post} key={post.id}/>
-    ))}
-  </div>
-}
+  return (
+    <div className="posts">
+      {error
+        ? "Something went wrong!"
+        : isLoading
+        ? "loading"
+        : data.map((post) => <Post post={post} key={post.id} />)}
+    </div>
+  );
+};
 
 export default Posts;

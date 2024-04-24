@@ -15,6 +15,7 @@ import { AuthContext } from "../../context/authContext";
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
   const { currentUser } = useContext(AuthContext);
+
   const { isLoading, error, data } = useQuery({
     queryKey: ["likes", post.id],
     queryFn: async () => {
@@ -42,6 +43,17 @@ const Post = ({ post }) => {
     mutation.mutate(data.includes(currentUser.id));
   };
 
+  // function datalen({ data }) {
+  //   let count = 0;
+  //   data.forEach((item) => {
+  //     count++;
+  //   });
+  //   return <div>{count}</div>;
+  // }
+
+  if (isLoading) {
+    return <>Loading....</>;
+  }
   return (
     <div className="post">
       <div className="container">
@@ -50,7 +62,7 @@ const Post = ({ post }) => {
             <img src={post.profilePic} alt="" />
             <div className="details">
               <Link
-                to={`/profile/${post.userId}`}
+                to={`/profile/${post.userid}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <span className="name">{post.name}</span>
@@ -62,11 +74,13 @@ const Post = ({ post }) => {
         </div>
         <div className="content">
           <p>{post.de}</p>
-          <img src={"./upload/" + post.img} alt="" />
+          <img src={"/upload/" + post.img} alt="" />
         </div>
         <div className="info">
           <div className="item">
-            {isLoading ? (
+            {error ? (
+              "Can't fetch likes"
+            ) : isLoading ? (
               "loading"
             ) : data.includes(currentUser.id) ? (
               <FavoriteOutlinedIcon
@@ -80,7 +94,7 @@ const Post = ({ post }) => {
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />
-            12 Comments
+            Comments
           </div>
           <div className="item">
             <ShareOutlinedIcon />

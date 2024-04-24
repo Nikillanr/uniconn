@@ -16,7 +16,6 @@ import { AuthContext } from "../../context/authContext";
 import { useContext } from "react";
 
 const LeftBar = () => {
-
   const { currentUser } = useContext(AuthContext);
 
   return (
@@ -24,24 +23,21 @@ const LeftBar = () => {
       <div className="container">
         <div className="menu">
           <div className="user">
-            <img
-              src={currentUser.profilePic}
-              alt=""
-            />
+            <img src={currentUser.profilePic} alt="" />
             <span>{currentUser.name}</span>
           </div>
-          <div className="item">
+          {/* <div className="item">
             <img src={Friends} alt="" />
             <span>Friends</span>
-          </div>
-          <div className="item">
+          </div> */}
+          {/* <div className="item">
             <img src={Groups} alt="" />
             <span>Groups</span>
-          </div>
-          <div className="item">
+          </div> */}
+          {/* <div className="item">
             <img src={Market} alt="" />
             <span>Marketplace</span>
-          </div>
+          </div> */}
           {/* <div className="item">
             <img src={Watch} alt="" />
             <span>Watch</span>
@@ -56,23 +52,35 @@ const LeftBar = () => {
           <span>Your shortcuts</span>
           <div className="item">
             <img src={Events} alt="" />
-            <span>Events</span>
+            <a
+              href="https://www.manipal.edu/mit/news-events.html"
+              target="_blank"
+              rel="norreferrer"
+            >
+              Events
+            </a>
           </div>
           {/* <div className="item">
             <img src={Gaming} alt="" />
             <span>Gaming</span>
           </div> */}
-          <div className="item">
+          {/* <div className="item">
             <img src={Gallery} alt="" />
             <span>Gallery</span>
-          </div>
+          </div> */}
           {/* <div className="item">
             <img src={Videos} alt="" />
             <span>Videos</span>
           </div> */}
           <div className="item">
             <img src={Messages} alt="" />
-            <span>Messages</span>
+            <a
+              href="https://outlook.office365.com/mail/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Messages
+            </a>
           </div>
         </div>
         <hr />
@@ -84,11 +92,23 @@ const LeftBar = () => {
           </div> */}
           <div className="item">
             <img src={Tutorials} alt="" />
-            <a href="https://slcm.manipal.edu/" target="_blank" rel="noreferrer">SLCM</a>
+            <a
+              href="https://slcm.manipal.edu/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              SLCM
+            </a>
           </div>
           <div className="item">
             <img src={Courses} alt="" />
-            <a href="https://lighthouse.manipal.edu/d2l/login?sessionExpired=0&target=%2fd2l%2fhome%2f7036" target="_blank" rel="noreferrer">Lighthouse</a>
+            <a
+              href="https://lighthouse.manipal.edu/d2l/login?sessionExpired=0&target=%2fd2l%2fhome%2f7036"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Lighthouse
+            </a>
           </div>
         </div>
       </div>

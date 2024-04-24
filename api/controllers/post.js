@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import moment from "moment";
 
 export const getPosts = (req, res) => {
+  const userId = req.query.userId;
   const token = req.cookies.accessToken;
   if (!token) {
     return res.status(401).json("Not logged in");
@@ -12,9 +13,10 @@ export const getPosts = (req, res) => {
       return res.status(403).json("Invalid token");
     }
 
-    const q =
-      "SELECT p.*, u.id as userid, name, profilePic FROM posts as p JOIN users as u ON (u.id = p.userid) LEFT JOIN relationships as r ON (p.userid = r.followedUserId) WHERE r.folowerUserId = ? OR p.userId = ? ORDER BY p.createdAt DESC";
-
+    const q = userId
+      ? "SELECT p.*, u.id as userid, name, profilePic FROM posts as p JOIN users as u ON (u.id = p.userid) WHERE p.userid = ? "
+      : "SELECT p.*, u.id as userid, name, profilePic FROM posts as p JOIN users as u ON (u.id = p.userid) LEFT JOIN relationships as r ON (p.userid = r.followedUserId) WHERE r.folowerUserId = ? OR p.userId = ? ORDER BY p.createdAt DESC";
+    const values = userId ? [userId] : [userInfo.id, userInfo.id];
     db.query(q, [userInfo.id, userInfo.id], (err, result) => {
       if (err) {
         return res.status(500).json(err);
